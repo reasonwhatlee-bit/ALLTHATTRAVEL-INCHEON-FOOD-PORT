@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>코엑스 COEX 미식항 : FOOD PORT INCHEON</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --navy:#1A3A5C;
+    --blue:#2B5F9E;
+    --light:#4A8FD4;
+    --pale:#D6E8F7;
+    --ghost:#EAF3FC;
+    --dark:#1E2A35;
+    --mid:#5A6472;
+    --line:#D9E2EB;
+    --off:#F4F7FA;
+    --white:#fff;
+    --red:#E8323A;
+  }
+  body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
+       background:#fff;color:var(--dark);line-height:1.6}
+
+  /* ── 공통 ── */
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+       color:var(--light);margin-bottom:10px}
+  .big-num{font-size:42px;font-weight:900;line-height:1;letter-spacing:-.03em}
+  .section{padding:56px 0}
+  .divider{width:100%;height:1px;background:var(--line)}
+
+  /* ── HERO ── */
+  #hero{background:linear-gradient(140deg,var(--navy) 0%,#0d2136 100%);
+        padding:60px 0 52px;text-align:center}
+  .hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;
+                color:rgba(255,255,255,.5);margin-bottom:14px}
+  .hero-title{font-size:clamp(26px,5vw,40px);font-weight:900;color:#fff;
+              line-height:1.2;letter-spacing:-.02em;margin-bottom:10px}
+  .hero-title span{color:var(--light)}
+  .hero-sub{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:32px;line-height:1.7}
+  .btn-primary{display:inline-block;background:var(--light);color:#fff;
+               font-size:15px;font-weight:700;padding:16px 36px;border-radius:8px;
+               text-decoration:none;letter-spacing:.02em;transition:.2s}
+  .btn-primary:hover{background:var(--blue);transform:translateY(-1px)}
+  .btn-ghost{display:inline-block;color:rgba(255,255,255,.7);font-size:13px;
+             margin-top:14px;text-decoration:underline;cursor:pointer}
+
+  /* ── KPI 3칸 ── */
+  #kpi{background:var(--off);padding:44px 0}
+  .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .kpi-card{background:#fff;border-radius:12px;padding:24px 16px;text-align:center;
+             border:1px solid var(--line)}
+  .kpi-card .big-num{color:var(--blue);margin-bottom:6px}
+  .kpi-card .kpi-label{font-size:12px;color:var(--mid);line-height:1.5}
+
+  /* ── 기회 ── */
+  #opportunity .inner{display:grid;grid-template-columns:1fr 1fr;gap:24px;
+                       align-items:center}
+  .opp-text h2{font-size:22px;font-weight:800;line-height:1.3;
+               color:var(--navy);margin-bottom:12px}
+  .opp-text p{font-size:14px;color:var(--mid);line-height:1.8}
+  .opp-badge{background:var(--ghost);border-left:4px solid var(--light);
+             border-radius:0 8px 8px 0;padding:18px 20px}
+  .opp-badge p{font-size:13px;font-weight:700;color:var(--navy);line-height:1.8}
+
+  /* ── 인포그래픽 ── */
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+  .info-card{border-radius:12px;padding:20px 18px;position:relative;overflow:hidden}
+  .info-card.dark{background:var(--navy)}
+  .info-card.light{background:var(--ghost);border:1.5px solid var(--pale)}
+  .info-card .ic-icon{font-size:26px;margin-bottom:8px}
+  .info-card .ic-label{font-size:10px;font-weight:700;letter-spacing:.1em;
+                        text-transform:uppercase;margin-bottom:6px}
+  .info-card.dark .ic-label{color:rgba(255,255,255,.5)}
+  .info-card.light .ic-label{color:var(--light)}
+  .info-card .ic-title{font-size:15px;font-weight:800;line-height:1.35}
+  .info-card.dark .ic-title{color:#fff}
+  .info-card.light .ic-title{color:var(--navy)}
+  .info-card .ic-sub{font-size:11px;margin-top:6px;line-height:1.5}
+  .info-card.dark .ic-sub{color:rgba(255,255,255,.6)}
+  .info-card.light .ic-sub{color:var(--mid)}
+  .info-card .ic-badge{display:inline-block;background:var(--light);color:#fff;
+                        font-size:10px;font-weight:700;padding:3px 8px;
+                        border-radius:20px;margin-top:8px}
+  .info-card.light .ic-badge{background:var(--navy)}
+
+  /* ── 기획관 ── */
+  #planning{background:var(--off)}
+  .planning-quote{background:var(--navy);color:#fff;border-radius:12px;
+                  padding:24px 28px;margin:20px 0;font-size:16px;
+                  font-weight:700;line-height:1.7;text-align:center}
+  .card-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+  .mini-card{background:#fff;border:1px solid var(--line);border-radius:10px;
+             padding:18px 14px;text-align:center}
+  .mini-card .icon{font-size:22px;margin-bottom:8px}
+  .mini-card .mc-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+  .mini-card .mc-desc{font-size:11px;color:var(--mid);line-height:1.5}
+
+  /* ── 수익 ── */
+  #revenue .rev-badge{background:var(--ghost);border-left:4px solid var(--blue);
+                      border-radius:0 8px 8px 0;padding:16px 20px;margin:16px 0}
+  .rev-badge p{font-size:13px;color:var(--dark);line-height:1.8}
+  .rev-table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0}
+  .rev-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;
+                font-weight:600;font-size:12px}
+  .rev-table td{padding:10px 14px;border-bottom:1px solid var(--line)}
+  .rev-table tr:last-child td{background:var(--ghost);font-weight:700;
+                              color:var(--blue);border-bottom:none}
+  .rev-table tr:nth-child(even) td{background:var(--off)}
+  .rev-highlight{background:linear-gradient(135deg,var(--navy),#0d2136);
+                 color:#fff;border-radius:12px;padding:22px 24px;margin-top:20px}
+  .rev-highlight p{font-size:14px;line-height:1.8}
+  .rev-highlight strong{color:var(--light)}
+
+  /* ── 비용 ── */
+  #cost{background:var(--off)}
+  .cost-table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0}
+  .cost-table th{background:var(--navy);color:#fff;padding:10px 14px;
+                 text-align:left;font-weight:600;font-size:12px}
+  .cost-table td{padding:10px 14px;border-bottom:1px solid var(--line)}
+  .cost-table tr.highlight td{background:var(--ghost);font-weight:700;
+                               color:var(--blue);font-size:14px}
+  .cost-table tr:nth-child(even):not(.highlight) td{background:#fff}
+  .per-day{display:flex;align-items:baseline;gap:6px;margin:12px 0}
+  .per-day .num{font-size:48px;font-weight:900;color:var(--blue);letter-spacing:-.03em}
+  .per-day .unit{font-size:16px;color:var(--mid);font-weight:600}
+
+  /* ── 선정 ── */
+  #selection{text-align:center;padding:56px 0}
+  #selection h2{font-size:clamp(22px,4vw,32px);font-weight:900;
+                color:var(--navy);line-height:1.3;margin-bottom:16px}
+  .badge-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:24px 0}
+  .badge{background:var(--ghost);border:1.5px solid var(--pale);border-radius:20px;
+         padding:8px 18px;font-size:13px;font-weight:700;color:var(--blue)}
+  .urgency{background:var(--navy);color:#fff;border-radius:12px;
+           padding:28px 24px;margin:24px 0;text-align:center}
+  .urgency .u-title{font-size:18px;font-weight:800;margin-bottom:8px}
+  .urgency .u-sub{font-size:13px;color:rgba(255,255,255,.7);line-height:1.7}
+
+  /* ── CTA ── */
+  #cta{background:linear-gradient(140deg,var(--navy),#0d2136);
+       padding:60px 0;text-align:center}
+  #cta h2{font-size:clamp(20px,4vw,28px);font-weight:900;color:#fff;
+           line-height:1.4;margin-bottom:8px}
+  #cta p{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:32px}
+  .contact-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+               border-radius:12px;padding:24px;display:inline-block;text-align:left;
+               margin-bottom:28px}
+  .contact-box .c-name{font-size:16px;font-weight:700;color:#fff;margin-bottom:4px}
+  .contact-box .c-phone{font-size:22px;font-weight:900;color:var(--light);
+                        letter-spacing:.04em}
+  .btn-call{display:inline-block;background:var(--light);color:#fff;
+            font-size:16px;font-weight:700;padding:18px 48px;border-radius:8px;
+            text-decoration:none;letter-spacing:.02em}
+
+  /* ── STEP 인포그래픽 ── */
+  .step-flow{display:flex;flex-direction:column;gap:0;margin:16px 0}
+  .step-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;
+             border-bottom:1px dashed var(--line)}
+  .step-item:last-child{border-bottom:none}
+  .step-num{min-width:36px;height:36px;border-radius:50%;background:var(--navy);
+            color:#fff;font-size:13px;font-weight:900;display:flex;
+            align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .step-item.accent .step-num{background:var(--blue)}
+  .step-item.result .step-num{background:var(--red)}
+  .step-body{}
+  .step-label{font-size:10px;font-weight:700;letter-spacing:.1em;
+              color:var(--light);text-transform:uppercase;margin-bottom:3px}
+  .step-title{font-size:15px;font-weight:800;color:var(--navy);line-height:1.3}
+  .step-item.result .step-title{color:var(--red)}
+  .step-sub{font-size:12px;color:var(--mid);margin-top:3px;line-height:1.5}
+  .arrow-down{text-align:center;color:var(--light);font-size:18px;line-height:1;
+              margin:-4px 0}
+
+  /* ── footer ── */
+  footer{padding:20px;text-align:center;font-size:11px;color:var(--mid)}
+
+  /* ── 모바일 ── */
+  @media(max-width:600px){
+    .kpi-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+    .kpi-card{padding:16px 8px}
+    .kpi-card .big-num{font-size:28px}
+    .kpi-card .kpi-label{font-size:10px}
+    #opportunity .inner{grid-template-columns:1fr}
+    .card-row{grid-template-columns:1fr}
+    .per-day .num{font-size:36px}
+    .section{padding:40px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">올댓트래블 2026 · 인천 미식 기획관</div>
+    <h1 class="hero-title">코엑스 COEX 미식항<br><span>FOOD PORT INCHEON</span></h1>
+    <p class="hero-sub">
+      지나가는 고객이 곧 매출입니다.<br>
+      3일 팔고, 365일 손님이 옵니다.
+    </p>
+    <a href="#cta" class="btn-primary">참여 문의하기</a>
+    <br>
+    <a href="#revenue" class="btn-ghost">수익 구조 먼저 보기 ↓</a>
+  </div>
+</section>
+
+<!-- ════ KPI ════ -->
+<section id="kpi">
+  <div class="wrap">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="big-num">2만<span style="font-size:20px">명</span></div>
+        <div class="kpi-label">2026 목표<br>방문객</div>
+      </div>
+      <div class="kpi-card">
+        <div class="big-num">3<span style="font-size:20px">일</span></div>
+        <div class="kpi-label">연 1회<br>3일만 열리는 행사</div>
+      </div>
+      <div class="kpi-card">
+        <div class="big-num">5<span style="font-size:20px">곳</span></div>
+        <div class="kpi-label">기획관 참여<br>최대 매장 수</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 기회 ════ -->
+<section id="opportunity" class="section">
+  <div class="wrap">
+    <div class="inner">
+      <div class="opp-text">
+        <div class="tag">Why COEX</div>
+        <h2>패스는 오프라인에서<br>더 잘 팔립니다</h2>
+        <p>
+          <strong style="color:var(--navy)">코엑스 방문자 수 = 당신의 잠재고객</strong><br>
+          인천 차이나타운 하루 방문객의 수십 배 규모가<br>
+          3일간 한 자리에 모입니다.
+        </p>
+      </div>
+      <div>
+        <div class="info-grid">
+          <div class="info-card dark">
+            <div class="ic-icon">🏆</div>
+            <div class="ic-label">행사 위상</div>
+            <div class="ic-title">관광·미식 분야<br>수위권 행사</div>
+            <div class="ic-sub">코엑스를 대표하는<br>관광 전시회</div>
+          </div>
+          <div class="info-card light">
+            <div class="ic-icon">📍</div>
+            <div class="ic-label">기획관 위치</div>
+            <div class="ic-title">미식관광<br>섹션 중심</div>
+            <div class="ic-sub">방문객 절반 이상이<br>지나가는 자리</div>
+            <span class="ic-badge">핵심 동선</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ════ 기획관 ════ -->
+<section id="planning" class="section">
+  <div class="wrap">
+    <div class="tag">기획관 구조</div>
+    <h2 style="font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px">
+      혼자 들어가면 "이 가게 패스"<br>
+      같이 들어가면 "인천 미식 통합권"
+    </h2>
+    <div class="planning-quote">
+      짜장면 먹으러 산 패스로,<br>쫄면도 소바도 커피도 먹을 수 있습니다.
+    </div>
+    <p style="font-size:14px;color:var(--mid);line-height:1.8">
+      기획관 내 5개 매장은 서로 묶여있습니다.<br>
+      옆 매장에서 팔린 패스도 내 매장 방문으로 연결됩니다.<br>
+      <strong style="color:var(--navy)">혼자 나가는 것보다 판매량 3~4배 이상.</strong>
+    </p>
+    <div class="card-row">
+      <div class="mini-card">
+        <div class="icon">🎨</div>
+        <div class="mc-title">저희가 만듭니다</div>
+        <div class="mc-desc">배너·포스터·리플렛 전량 제작</div>
+      </div>
+      <div class="mini-card">
+        <div class="icon">👤</div>
+        <div class="mc-title">저희가 구합니다</div>
+        <div class="mc-desc">현장 판매 인력 수급·교육<br><span style="color:var(--light);font-weight:700">(비용 별도)</span></div>
+      </div>
+      <div class="mini-card" style="background:var(--navy);border-color:var(--navy);transform:scale(1.04)">
+        <div class="icon">🏪</div>
+        <div class="mc-title" style="color:#fff;font-size:14px">사장님은 이것만</div>
+        <div class="mc-desc" style="color:var(--pale);font-size:12px;font-weight:700">A4 한 장<br>매장 소개 2~3줄</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ════ 수익 ════ -->
+<section id="revenue" class="section">
+  <div class="wrap">
+    <div class="tag">수익 구조</div>
+    <h2 style="font-size:22px;font-weight:800;color:var(--navy);margin-bottom:16px">
+      두 가지 수익이 동시에 들어옵니다
+    </h2>
+
+    <div class="rev-badge">
+      <p>
+        <strong>① 즉각 수익</strong> — 간편식 상품 현장 직판 (수수료 0원)<br>
+        19,900원 × 하루 50개 × 3일 = <strong>약 300만원 즉시 매출</strong>
+      </p>
+    </div>
+    <div class="rev-badge">
+      <p>
+        <strong>② 미래 수익</strong> — 코엑스에서 팔린 패스 구매자가 매장으로<br>
+        패스 1회 사용 시 7,600원 정산 · 추가 주문 별도
+      </p>
+    </div>
+
+    <p style="font-size:13px;font-weight:700;color:var(--mid);margin:20px 0 4px">계산 흐름</p>
+    <div class="step-flow">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-label">행사 통행량</div>
+          <div class="step-title">코엑스 3일 총 통행 10,000명</div>
+          <div class="step-sub">미식관광 섹션 집중 통행 기준</div>
+        </div>
+      </div>
+      <div class="step-item accent">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-label">패스 구매율 4%</div>
+          <div class="step-title">400명 패스 확보</div>
+          <div class="step-sub">현장 구매 전환율 보수 추정</div>
+        </div>
+      </div>
+      <div class="step-item accent">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-label">기획관 방문 전환 1/5</div>
+          <div class="step-title">80명 확정 방문</div>
+          <div class="step-sub">이미 돈을 낸 목적지 방문객 · 취소 없음</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-label">기본 정산</div>
+          <div class="step-title">80명 × 7,600원 = 608,000원</div>
+          <div class="step-sub">테이블 착석 시 추가 주문 별도</div>
+        </div>
+      </div>
+      <div class="step-item result">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-label">공동관 통합판매 3배 효과</div>
+          <div class="step-title">기대 정산 → 최소 1,824,000원</div>
+          <div class="step-sub">5개 매장 공동 판매 시 단독 대비 3배 이상 패스 판매</div>
+        </div>
+      </div>
+    </div>
+
+    <table class="rev-table" style="margin-top:20px">
+      <tr><th>항목</th><th>계산</th><th>수익</th></tr>
+      <tr>
+        <td>패스 정산 (공동관 3배)</td>
+        <td style="font-size:12px">240명 × 7,600원</td>
+        <td><strong>1,824,000원</strong></td>
+      </tr>
+      <tr>
+        <td>추가 주문</td>
+        <td style="font-size:12px">평균 6,000원 × 120명</td>
+        <td><strong>720,000원</strong></td>
+      </tr>
+      <tr>
+        <td>간편식 현장 직판</td>
+        <td style="font-size:12px">19,900원 × 50개 × 3일</td>
+        <td><strong>2,985,000원</strong></td>
+      </tr>
+      <tr><td colspan="2"><strong>합산 기대 수익</strong></td><td><strong>약 5,529,000원</strong></td></tr>
+    </table>
+
+    <div class="rev-highlight">
+      <p>
+        이 80명은 그냥 지나가는 손님이 아닙니다.<br>
+        <strong>이미 돈을 내고 이 매장을 목적지로 정한 사람들입니다.</strong><br>
+        테이블에 앉으면 추가 주문이 일어납니다. 7,600원이 끝이 아닙니다.<br><br>
+        <strong style="color:var(--light)">3일 팔고, 365일 동안 올 확정 손님을 쓸어담는 구조입니다.</strong>
+      </p>
+    </div>
+
+    <div style="text-align:center;margin-top:24px">
+      <a href="#cta" class="btn-primary">지금 참여 문의하기</a>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ════ 비용 ════ -->
+<section id="cost" class="section">
+  <div class="wrap">
+    <div class="tag">비용 비교</div>
+    <h2 style="font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px">
+      하루에 얼마예요?
+    </h2>
+    <div class="per-day">
+      <span class="num">50만원</span>
+      <span class="unit">/ 1일</span>
+    </div>
+    <p style="font-size:13px;color:var(--mid);margin-bottom:16px">
+      3일 총 150만원 · 세팅·홍보물 지원 포함 (인력 별도)
+    </p>
+
+    <table class="cost-table">
+      <tr><th>행사</th><th>비용</th><th>비고</th></tr>
+      <tr><td>코엑스 일반 부스 단독</td><td>350만원+</td><td>대기 2년</td></tr>
+      <tr><td>동급 전시 행사</td><td>300만원</td><td></td></tr>
+      <tr><td>동급 전시 행사</td><td>250만원/일</td><td></td></tr>
+      <tr class="highlight">
+        <td>FOOD PORT INCHEON</td>
+        <td>150만원 (3일)</td>
+        <td>대기 없음</td>
+      </tr>
+    </table>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ════ 선정 ════ -->
+<section id="selection">
+  <div class="wrap">
+    <div class="tag" style="text-align:center">선정 기준</div>
+    <h2>딱 5곳,<br>올해가 마지막입니다</h2>
+    <div class="badge-row">
+      <span class="badge">연간 패스 사용 1,000회 이상</span>
+      <span class="badge">패스 운영 최우수 매장</span>
+      <span class="badge">연 1회 · 3일 한정</span>
+    </div>
+    <div class="urgency">
+      <div class="u-title">올댓트래블 — COEX 입점 공식 파트너</div>
+      <div class="u-sub">
+        선정 자체가 인증입니다.<br>
+        올해를 놓치면 다음 기회는 내년 이 시즌까지 없습니다.<br>
+        자리가 먼저 채워집니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CTA ════ -->
+<section id="cta">
+  <div class="wrap">
+    <h2>인천을 대표하는 당신의 맛,<br>강남의 소비자들에게 판매해보세요.</h2>
+    <p>지금 연락 주시면 바로 확인해드립니다.</p>
+    <div class="contact-box">
+      <div class="c-name">블루프로그 이국규</div>
+      <div class="c-phone">010-6863-2268</div>
+    </div>
+    <br>
+    <a href="tel:01068632268" class="btn-call">지금 전화하기</a>
+  </div>
+</section>
+
+<footer>
+  FOOD PORT INCHEON · 올댓트래블 2026 · Confidential
+</footer>
+
+</body>
+</html>
